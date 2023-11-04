@@ -1,0 +1,68 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url('/IMG/serhat-tug-AYn1YBXn8Vo-unsplash.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#field {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #3498db;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  color: #333;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+#field::placeholder {
+  color: #999;
+}
+
+#field:focus {
+  border-color: #2980b9;
+  background-color: #e6e6e6;
+  transform: scale(1.05);
+}
+
+
+#message {
+  color: red;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  transition: color 0.5s;
+  margin-top: 15px;
+}
+
+#letter-display {
+  color: green;
+  font-size: 24px;
+  font-family: "Verdana", sans-serif;
+  animation: colorChange 1s infinite alternate;
+  margin-top: 15px;
+}
+
+#success-message {
+  color: blue;
+  font-weight: bold;
+  font-family: "Georgia", serif;
+  transition: color 0.5s;
+  margin-top: 15px;
+}
+
+@keyframes colorChange {
+  0% {
+      color: green;
+  }
+  100% {
+      color: orange;
+  }
+}
