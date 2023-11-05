@@ -1,9 +1,25 @@
 let field = document.querySelector('#field');
 let message = document.querySelector('#message');
 let letterDisplay = document.querySelector('#letter-display');
-let successMessage = document.querySelector('#success-message');
 
 let cities = [];
+let allCities = ["Львів", "Вінниця", "Київ", "Одеса", "Харків", "Дніпро", "Запоріжжя", "Луцьк", "Тернопіль", "Івано-Франківськ"];
+
+function robotMove() {
+    let lastCity = cities[cities.length - 1];
+    let lastChar = lastCity.charAt(lastCity.length - 1).toLowerCase();
+
+    let validCity = allCities.find(city => {
+        return !cities.includes(city) && city.charAt(0).toLowerCase() === lastChar;
+    });
+
+    if (validCity) {
+        cities.push(validCity);
+        message.textContent = `Робот вибрав місто ${validCity}`;
+    } else {
+        message.textContent = "Робот не може знайти валідне місто. Тобі належить виграти!";
+    }
+}
 
 field.addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
@@ -17,16 +33,14 @@ field.addEventListener('keyup', function (event) {
             if (lastChar === inputValue.charAt(0).toLowerCase()) {
                 cities.push(inputValue);
                 letterDisplay.textContent = '';
-                successMessage.textContent = 'Гарно! Тепер ваш хід';
-                message.textContent = '';
+                robotMove();
             } else {
-                message.textContent = 'Місто повинно починатися на останню букву попереднього міста';
+                message.textContent = 'Город повинен починатися на останню букву попереднього города';
                 letterDisplay.textContent = lastChar;
-                successMessage.textContent = '';
             }
         } else {
             cities.push(inputValue);
-            successMessage.textContent = 'Початковий хід. Тепер хід опонента';
+            robotMove();
         }
 
         field.value = '';
